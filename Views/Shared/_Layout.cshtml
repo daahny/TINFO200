@@ -1,0 +1,83 @@
+﻿@*
+// TINFO 200 A, Winter 2021
+// UWTacoma SET, Daniel Androussenko
+// 03-13-2021
+// L7mvc - Contoso University
+// This is an ASP.NET Core web application project for performing database-related operations for a University.
+// This includes standard CRUD operations for students, courses, instructors, and departments. So far, only  CRUD operations for students are working.
+// Please note, the change history is implemented as tags within the code and the architecture and code is described and annotated within the code itself.
+///////////////////////////////////////////////////////
+// Sources --------------
+// Microsoft Docs - Tutorial: Get started with EF Core in an ASP.NET MVC web app
+// Link: https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-5.0
+*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Use the ViewData dictionary to render the title definition -->
+    <title>@ViewData["Title"] - Contoso U.</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Contoso U.</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <!-- tinfo200:[2021-03-03-dandrous-dykstra1] -- Imported code from "Get started" tutorial
+                             This code adds list items to be displayed across the top of the web page, acting as a navigation bar
+                             Note, this was appended to _layout.cshtml so its a part of the HTML container, consistent across all web pages.
+                            -->
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Students" asp-action="Index">Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Index">Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Instructors" asp-action="Index">Instructors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Departments" asp-action="Index">Departments</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @* The RenderBody() line is a placeholder for where all the view-specified pages you created show up - msdn*@
+            @* For instance, when the Privacy link is clicked, the Privacy view is generated inside this HTML document *@
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <!-- Display copyright symbol, use Razor to display the current DateTime, and display the text "Contoso U." -->
+            <!-- Append a hyperlink for the Privacy page using the Privacy action method in the Home controller. -->
+            &copy; @DateTime.Now - Contoso U. - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

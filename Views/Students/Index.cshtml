@@ -1,0 +1,68 @@
+﻿@*
+// TINFO 200 A, Winter 2021
+// UWTacoma SET, Daniel Androussenko
+// 03-13-2021
+// L7mvc - Contoso University
+// This is an ASP.NET Core web application project for performing database-related operations for a University.
+// This includes standard CRUD operations for students, courses, instructors, and departments. So far, only  CRUD operations for students are working.
+// Please note, the change history is implemented as tags within the code and the architecture and code is described and annotated within the code itself.
+///////////////////////////////////////////////////////
+// Sources --------------
+// Microsoft Docs - Tutorial: Get started with EF Core in an ASP.NET MVC web app
+// Link: https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-5.0
+*@
+
+<!-- Index view for the Students tab.
+     Uses C# loops to display student data as a table -->
+
+@model IEnumerable<ContosoUniversity.Models.Student>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <!-- Table header for last name-->
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <!-- Table header for firstmid name-->
+            <th>
+                @Html.DisplayNameFor(model => model.FirstMidName)
+            </th>
+            <!-- Table header for enrollment date-->
+            <th>
+                @Html.DisplayNameFor(model => model.EnrollmentDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <!-- Table row for data of a single student-->
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstMidName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
